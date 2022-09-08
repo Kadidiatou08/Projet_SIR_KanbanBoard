@@ -1,0 +1,45 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <form name="form" (ngSubmit)="registerForm.form.valid && onSubmit(registerForm)" #registerForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="name">Pseudo</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required/>
+        <div class="alert alert-danger" role="alert" *ngIf="name.errors && registerForm.submitted">
+          Veuillez entrez votre Pseudo!
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"  required/>
+        <div class="alert alert-danger" role="alert" *ngIf="email.errors && registerForm.submitted">
+          Veuillez entrez votre Email!
+        </div>
+      </div>
+
+        
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" name="password"  [(ngModel)]="form.password" #password="ngModel"  required
+          minlength="6"/>
+          <div class="alert alert-danger" role="alert" *ngIf="password.errors && registerForm.submitted">
+            <div *ngIf="password.errors['required']">Veuillez entrez votre Mot de passe!</div>
+            <div *ngIf="password.errors['minlength']">
+              Votre mot de passe doit avoir plus de six(6) caractères
+            </div>
+          </div>
+      </div>
+
+      
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Inscription</button>
+        <button class="btn btn-danger float-right" type="button" (click)="onReset(registerForm)">
+          Reset
+        </button>
+      </div>
+
+      <div class="form-group">
+      </div>
+    </form>
+  </div>
+</div>
